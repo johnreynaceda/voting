@@ -210,9 +210,9 @@
                     <!-- Sidebar component, swap this element with another sidebar if you like -->
                     <div class="mt-6 h-0 flex-1 flex flex-col overflow-y-auto">
                         <!-- User account dropdown -->
-                        <div class="px-3 relative inline-block text-left">
-                            <div x-data="open: false">
-                                <button type="button"
+                        <div class="px-3 relative inline-block text-left" x-data="{open: false}">
+                            <div>
+                                <button type="button" @click="open = !open"
                                     class="group w-full bg-gray-100 rounded-md px-3.5 py-4 text-sm text-left font-medium text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500"
                                     id="options-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="flex w-full justify-between items-center">

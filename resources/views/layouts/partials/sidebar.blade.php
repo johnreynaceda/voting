@@ -7,10 +7,10 @@
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="mt-6 h-0 flex-1 flex flex-col overflow-y-auto">
         <!-- User account dropdown -->
-        <div class="px-3 relative inline-block text-left">
+        <div class="px-3 relative inline-block text-left" x-data="{open: false}">
             <div>
-                <button type="button"
-                    class="group w-full bg-gray-100 rounded-md px-3.5 py-4 text-sm text-left font-medium text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500"
+                <button type="button" @click="open = !open"
+                    class="group w-full  bg-gray-100 rounded-md px-3.5 py-4 text-sm text-left font-medium text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500"
                     id="options-menu-button" aria-expanded="false" aria-haspopup="true">
                     <span class="flex w-full justify-between items-center">
                         <span class="flex min-w-0 items-center justify-between space-x-3">
@@ -45,21 +45,21 @@
               From: "transform opacity-100 scale-100"
               To: "transform opacity-0 scale-95"
           -->
-            {{-- <div class="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-button" tabindex="-1">
-            <div class="py-1" role="none">
-              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-white" -->
-              <a href="#" class="text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="options-menu-item-0">View profile</a>
-              <a href="#" class="text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="options-menu-item-1">Settings</a>
-              <a href="#" class="text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="options-menu-item-2">Notifications</a>
+            <div x-show="open" x-cloak x-collapse
+                class="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none"
+                role="menu" aria-orientation="vertical" aria-labelledby="options-menu-button" tabindex="-1">
+
+                <div class="py-1" role="none">
+                    <form method="POST" action="{{ route('logout') }}">
+
+                        @csrf
+
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            this.closest('form').submit();" class="text-gray-700 block px-4 py-2 text-sm"
+                            role="menuitem" tabindex="-1" id="options-menu-item-5">Logout</a>
+                    </form>
+                </div>
             </div>
-            <div class="py-1" role="none">
-              <a href="#" class="text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="options-menu-item-3">Get desktop app</a>
-              <a href="#" class="text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="options-menu-item-4">Support</a>
-            </div>
-            <div class="py-1" role="none">
-              <a href="#" class="text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="options-menu-item-5">Logout</a>
-            </div>
-          </div> --}}
         </div>
         <!-- Sidebar Search -->
 

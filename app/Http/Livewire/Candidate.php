@@ -21,11 +21,14 @@ class Candidate extends Component
     public $positionid;
     public $partylistid;
     public $moral;
+    public $search="";
     public $editmodal = false;
     public function render()
     {
         return view('livewire.candidate', [
-            'candidates' => candidateModel::get(),
+            'candidates' => candidateModel::whereHas('student', function($k){
+                $k->where('firstname', 'like', '%'.$this->search.'%')->orWhere('lastname', 'like', '%'. $this->search. '%');
+            })->get(),
             'students' => Student::where('firstname', 'like', '%' . $this->name . '%')->orWhere('lastname', 'like', '%' . $this->name . '%')->get(),
             'positions' => Position::get(),
             'partylists' => Partylist::get(),

@@ -70,7 +70,7 @@
                                     <div class="-mt-12 sm:-mt-16 mb-5 sm:flex sm:items-end sm:space-x-5">
                                         <div class="flex">
                                             <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-                                                src="{{ asset('/storage/candidates/' . $candidate->student->image->url) }}"
+                                                src="{{ asset('/storage/student/' . $candidate->student->image->url) }}"
                                                 alt="">
                                         </div>
                                         <div

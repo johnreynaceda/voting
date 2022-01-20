@@ -1,7 +1,7 @@
 <div x-data="{add: @entangle('addmodal'), edit: @entangle('editmodal')}">
     <div class="hidden mt-8 sm:block">
         <div class="flex mb-3 px-6 justify-between items-center">
-            <h1 class="  uppercase font-bold text-gray-600">List of Students</h1>
+            <h1 class="  uppercase font-bold text-gray-600">List of Users</h1>
             <div class="flex border border-main pl-2 rounded-md">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-main" viewBox="0 0 20 20"

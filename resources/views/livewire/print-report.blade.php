@@ -6,6 +6,11 @@
     @if ($type == 'student')
         <div class="mt-3">
             <h1 class=" font-bold ">List of Students</h1>
+            @if($filter == 0)
+            <h1>NOT VOTE</h1>
+            @else
+
+            @endif
             <div class="mt-2 w-full">
                 <table class="w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">

@@ -19,6 +19,7 @@ class Voters extends Component
     public $lastname;
     public $gender;
     public $level;
+    public $search = "";
     public $photo;
     public $studentid;
     public $addmodal = false;
@@ -27,7 +28,7 @@ class Voters extends Component
     public function render()
     {
         return view('livewire.voters', [
-            'students' => Student::get(),
+            'students' => Student::where('firstname', 'like', '%'.$this->search.'%')->orWhere('lastname', 'like', '%'. $this->search. '%')->get(),
         ]);
     }
 

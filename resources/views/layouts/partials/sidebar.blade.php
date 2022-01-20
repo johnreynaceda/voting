@@ -14,9 +14,11 @@
                     id="options-menu-button" aria-expanded="false" aria-haspopup="true">
                     <span class="flex w-full justify-between items-center">
                         <span class="flex min-w-0 items-center justify-between space-x-3">
-                            <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"
-                                src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                                alt="">
+                           <div class="bg-main w-10 h-10 flex items-center justify-center rounded-full  flex-shrink-0">    
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+</svg>
+                           </div>
                             <span class="flex-1 flex flex-col min-w-0">
                                 <span
                                     class="text-gray-900 text-sm font-medium truncate">{{ auth()->user()->name }}</span>

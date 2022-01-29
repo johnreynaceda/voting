@@ -54,17 +54,16 @@
                                             class="col-span-1 bg-white rounded-lg relative w-full shadow divide-y divide-gray-200">
                                             <div>
                                                 <div class="relative">
-                                                    <img class="h-20 w-full object-cover lg:h-20"
-                                                        src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-                                                        alt="">
+                                                    <img class="h-20 w-full opacity-70 bg-gray-700 object-cover lg:h-20"
+                                                        src="{{ asset('images/bsnhsbg.jpg') }}" alt="">
 
                                                     <div
                                                         class="absolute bottom-0 font-bold text-white text-xl items-end flex flex-col right-2">
                                                         <span
-                                                            class=" text-sm text-white px-2 rounded-md bg-opacity-70 animate animate-pulse bg-main ">{{ $candidate->partylist->partylist_name }}
+                                                            class=" text-sm text-white  px-2 rounded-md bg-opacity-70 animate animate-pulse bg-main ">{{ $candidate->partylist->partylist_name }}
                                                             Partylist</span>
                                                         <span
-                                                            class="">{{ $candidate->student->firstname }}
+                                                            class="bg-main px-2 rounded-md">{{ $candidate->student->firstname }}
                                                             {{ $candidate->student->lastname }}</span>
                                                     </div>
                                                 </div>

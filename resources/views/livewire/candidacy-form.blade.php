@@ -19,6 +19,9 @@
             ________________________ ; after being sworn to in accordance with law, hereby state the following:
         </p>
     </div>
+    {{-- @if ()
+        
+    @endif --}}
     <div class="mt-7 flex space-x-5">
         {{-- <p class="font-bold flex  uppercase text-lg">1. FULL NAME: <span
                 class="pl-5 border-b-2  flex space-x-10 ">{{ $candidate->student->lastname }},

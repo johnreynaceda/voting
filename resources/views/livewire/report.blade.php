@@ -230,35 +230,64 @@
             @livewire('tabulation')
         @else
             <div class="mt-3  w-96">
+
+                {{-- @foreach ($positions as $key => $item)
+                    <h1 class="underline pr-5 font-bold text-main uppercase ">
+                        {{ App\Models\Position::find($key)->position_name }}</h1>
+                    @foreach ($item->max()->limit(App\Models\Position::find($key)->vote_limit)->get()
+    as $candidate)
+
+                        <h1>{{ $candidate->student->lastname }}</h1>
+
+                    @endforeach
+                @endforeach --}}
+
                 @forelse ($positions as $key => $item)
                     <h1 class="underline pr-5 font-bold text-main uppercase ">
                         {{ App\Models\Position::find($key)->position_name }}</h1>
-                    @foreach ($item as $candidate)
-                        <div class=" pr-2 py-3 border px-2 rounded-md">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
-                                    <img class="h-8 w-8 rounded-full"
-                                        src="{{ asset('/storage/student/' . $candidate->student->image->url) }}"
-                                        alt="">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-bold text-gray-800 truncate">
-                                        {{ $candidate->student->firstname }}
-                                        {{ $candidate->student->lastname }}
-                                    </p>
-                                    <p class="text-sm text-gray-500 truncate">
-                                        {{ $candidate->partylist->partylist_name }} Partylist
-                                    </p>
-                                </div>
-                                <div>
-                                    <span class="font-bold text-main text-lg">{{ $candidate->votes->count() }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+
+                        
+                        @foreach (App\Models\Vote::whereHas('candidate', function($k){
+                        $k->where('position_id', App\Models\Position::find($key)->id);
+                        })->get() as $candidate)
+                            
+                        <h1>{{$candidate}}</h1>
+
+                        @endforeach
+
+                    {{-- <h1> @dump(App\Models\Vote::whereHas('candidate', function($k){
+                        $k->where('position_id', $item->id);
+                        })->get())</h1> --}}
                 @empty
 
                 @endforelse
+
+                {{-- @forelse ($positions as $key => $item)
+                    <div
+                        class="relative rounded-lg border border-gray-300 bg-white  shadow-sm  items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                        <div class="header p-1 px-2 bg-main rounded-t-lg w-full text-white">
+                            {{ App\Models\Position::find($key)->position_name }}</div>
+                        <div class="p-2">
+                            <ul role="list" class="  divide-y divide-gray-200">
+
+                                @php
+                                    $limit = App\Models\Position::find($key)->vote_limit;
+                                    
+                                @endphp
+
+
+                                @dump($item)
+
+
+                            </ul>
+                        </div>
+                    </div>
+                @empty
+
+                @endforelse --}}
+
+
+
             </div>
         @endif
     </div>

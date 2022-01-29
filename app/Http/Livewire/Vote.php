@@ -69,11 +69,11 @@ class Vote extends Component
         User::find($id)->update([
             'isvoted' => true,
         ]);
-        $this->alert('success', 'Submitted Successfully!', [
-            'position' => 'center',
-            'timer' => 3000,
-            'toast' => false,
-            'timerProgressBar' => true,
-        ]);
+        // $this->alert('success', 'Submitted Successfully!', [
+        //     'position' => 'center',
+        //     'timer' => 3000,
+        //     'toast' => false,
+
+        // ]);
     }
 }

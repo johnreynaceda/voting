@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Student;
 use App\Models\Partylist;
 use App\Models\Candidate;
+use App\Models\Vote;
 
 class Report extends Component
 {
@@ -22,6 +23,7 @@ class Report extends Component
             'partylists' => Partylist::get(),
             'candidates' => Candidate::where('partylist_id', 'like', '%' . $this->partylistid . '%')->get(),
             'positions' => Candidate::all()->groupBy('position_id'),
+
         ]);
     }
 }

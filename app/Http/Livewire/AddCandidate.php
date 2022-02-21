@@ -62,17 +62,18 @@ class AddCandidate extends Component
 
         ]);
 
+        $this->reset([
+            'name',
+            'studentid',
+            'average',
+            'stage',
+            'photo',
+            'citizenship',
+            'moral',
+        ]);
 
-
-        $this->name = "";
-        $this->studentid = "";
-        $this->average = "";
-        $this->stage = null;
-
-        $this->citizenship = "";
-
-        $this->moral = null;
         $this->addmodal = false;
+
         $this->alert('success', 'Added Successfully');
         return redirect()->route('admin-candidate');
     }
@@ -92,14 +93,15 @@ class AddCandidate extends Component
 
 
 
-        $this->name = "";
-        $this->studentid = "";
-        $this->average = "";
-        $this->stage = null;
-
-        $this->citizenship = "";
-
-        $this->moral = null;
+        $this->reset([
+            'name',
+            'studentid',
+            'average',
+            'stage',
+            'photo',
+            'citizenship',
+            'moral',
+        ]);
         $this->alert('success', 'Added Successfully');
     }
 }

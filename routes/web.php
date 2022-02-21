@@ -35,6 +35,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/users', [AdminController::class, 'users'])->name('admin-users');
     Route::get('/report', [AdminController::class, 'report'])->name('admin-report');
     Route::get('/print', [AdminController::class, 'print'])->name('admin-print');
+    Route::get('/print-winner', [AdminController::class, 'printwinner'])->name('admin-printwinner');
     Route::get('/candidacyform', [AdminController::class, 'cf'])->name('admin-cf');
 });
 

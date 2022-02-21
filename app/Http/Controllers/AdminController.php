@@ -46,6 +46,10 @@ class AdminController extends Controller
     {
         return view('admin.print');
     }
+    public function printwinner()
+    {
+        return view('admin.printwinner');
+    }
     public function cf()
     {
         return view('admin.cf');

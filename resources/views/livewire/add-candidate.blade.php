@@ -184,7 +184,10 @@
                 </div>
             </div>
             <div class=" w-72">
-                <img src="{{ asset('/storage/student/' . $photo) }}" class="border w-full object-cover h-72" alt="">
+                @if ($photo)
+                    <img src="{{ asset('/storage/student/' . $photo) }}" class="border w-full object-cover h-72"
+                        alt="">
+                @endif
             </div>
         </div>
     </div>

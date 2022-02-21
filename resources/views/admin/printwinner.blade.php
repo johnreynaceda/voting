@@ -57,7 +57,7 @@
 </head>
 
 <body class="font-sans antialiased h-full overflow-hidden" onload="window.print()" onafterprint="window.close()">
-    @livewire('print-report')
+    @livewire('print-winner')
 
     @stack('modals')
 

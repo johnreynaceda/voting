@@ -28,7 +28,7 @@ class Voters extends Component
     public function render()
     {
         return view('livewire.voters', [
-            'students' => Student::where('firstname', 'like', '%'.$this->search.'%')->orWhere('lastname', 'like', '%'. $this->search. '%')->get(),
+            'students' => Student::where('firstname', 'like', '%' . $this->search . '%')->orWhere('lastname', 'like', '%' . $this->search . '%')->get(),
         ]);
     }
 
@@ -67,12 +67,14 @@ class Voters extends Component
 
         $this->addmodal = false;
         $this->alert('success', 'added Successfully!');
-        $this->firstname = "";
-        $this->middlename = "";
-        $this->lastname = "";
-        $this->gender = "";
-        $this->photo = "";
-        $this->level = "";
+        $this->reset([
+            'firstname',
+            'middlename',
+            'lastname',
+            'gender',
+            'photo',
+            'level',
+        ]);
     }
     public function savenew()
     {
@@ -107,12 +109,20 @@ class Voters extends Component
         ]);
 
         $this->alert('success', 'added Successfully!');
-        $this->firstname = "";
-        $this->middlename = "";
-        $this->lastname = "";
-        $this->gender = "";
-        $this->photo = "";
-        $this->level = "";
+        // $this->firstname = "";
+        // $this->middlename = "";
+        // $this->lastname = "";
+        // $this->gender = "";
+        // $this->photo = "";
+        // $this->level = "";
+        $this->reset([
+            'firstname',
+            'middlename',
+            'lastname',
+            'gender',
+            'photo',
+            'level',
+        ]);
     }
 
     public function edit($id)

@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Student;
 use App\Models\Candidate;
+use App\Models\Position;
+use App\Models\Partylist;
 
 class PrintReport extends Component
 {
@@ -24,7 +26,9 @@ class PrintReport extends Component
                 $k->where('isvoted', 0);
             })->get()),
             'candidates' => Candidate::where('partylist_id', 'like', '%' . $this->filter . '%')->get(),
-            'positions' => Candidate::all()->groupBy('position_id'),
+            'positions' => Position::get(),
+            'partylists' => Partylist::get(),
+
         ]);
     }
 }

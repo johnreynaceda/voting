@@ -6,10 +6,9 @@
     @if ($type == 'student')
         <div class="mt-3">
             <h1 class=" font-bold ">List of Students</h1>
-            @if($filter == 0)
-            <h1>NOT VOTE</h1>
+            @if ($filter == 0)
+                <h1>ABSTAIN</h1>
             @else
-
             @endif
             <div class="mt-2 w-full">
                 <table class="w-full divide-y divide-gray-200">
@@ -162,6 +161,97 @@
                 </table>
             </div>
         </div>
+
+    @elseif($type == 'position')
+        <div class="mt-3">
+            <h1 class=" font-bold ">List Posisition
+            </h1>
+            <div class="mt-2 w-full">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Position
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Vote Limit
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @forelse ($positions as $position)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $position->position_name }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ $position->vote_limit }}
+                                </td>
+
+
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="px-6 py-4 whitespace-nowrap text-right flex text-sm font-medium">
+                                    No
+                                    Position Available.</td>
+                            </tr>
+                        @endforelse
+
+                        <!-- More people... -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    @elseif($type == 'partylist')
+        <div class="mt-3">
+            <h1 class=" font-bold ">List of Partylist</h1>
+            <div class="mt-2 w-full">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Partylist Name
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Description
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @forelse ($partylists as $partylist)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $partylist->partylist_name }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ $partylist->description }}
+                                </td>
+
+
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="px-6 py-4 whitespace-nowrap text-right flex text-sm font-medium">
+                                    No
+                                    Student Available.</td>
+                            </tr>
+                        @endforelse
+
+                        <!-- More people... -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     @else
         <div class="mt-3">
             <h1 class="font-bold uppercase">Tabulation</h1>
@@ -198,14 +288,12 @@
                                             </div>
                                         </li>
                                     @empty
-
                                     @endforelse
 
                                 </ul>
                             </div>
                         </div>
                     @empty
-
                     @endforelse
 
                     <!-- More people... -->

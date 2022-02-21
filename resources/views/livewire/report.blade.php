@@ -8,7 +8,7 @@
                     <select id="location" name="location" wire:model="student"
                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                         <option value="1">All</option>
-                        <option value="2">Not Vote</option>
+                        <option value="2">Abstain</option>
 
 
                     </select>
@@ -92,6 +92,130 @@
             </table>
         </div>
     </div>
+
+    <div class="py-3 flex space-x-5">
+        <div class=" w-6/12">
+            <div class="list mb-3 border-b">
+                <div class="flex  justify-between items-end">
+                    <h1 class="text-xl font-bold text-main">List of Positions</h1>
+                    <div class="flex space-x-2 items-center">
+
+                        <a href="{{ route('admin-print', ['type' => 'position']) }}" target="_blank"
+                            class="py-1 px-2 bg-green-700 space-x-1  text-white flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Print</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-2 border">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Position
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Vote Limit
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @forelse ($positions as $position)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        {{ $position->position_name }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ $position->vote_limit }}
+                                    </td>
+
+
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7"
+                                        class="px-6 py-4 whitespace-nowrap text-right flex text-sm font-medium"> No
+                                        Position Available.</td>
+                                </tr>
+                            @endforelse
+
+                            <!-- More people... -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="w-6/12">
+            <div class="list mb-3 border-b">
+                <div class="flex  justify-between items-end">
+                    <h1 class="text-xl font-bold text-main">List of Partylist</h1>
+                    <div class="flex space-x-2 items-center">
+
+                        <a href="{{ route('admin-print', ['type' => 'partylist']) }}" target="_blank"
+                            class="py-1 px-2 bg-green-700 space-x-1  text-white flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Print</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-2 border">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Partylist Name
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Description
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @forelse ($partylists as $partylist)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        {{ $partylist->partylist_name }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ $partylist->description }}
+                                    </td>
+
+
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7"
+                                        class="px-6 py-4 whitespace-nowrap text-right flex text-sm font-medium"> No
+                                        Student Available.</td>
+                                </tr>
+                            @endforelse
+
+                            <!-- More people... -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="list mb-3 border-b">
         <div class="flex  justify-between items-end">
             <h1 class="text-xl font-bold text-main">List of Candidates</h1>
@@ -206,13 +330,23 @@
             <div class="flex space-x-3 items-center">
                 <div>
 
-                    <select id="location" name="location" wire:model="tabulate"
+                    {{-- <select id="location" name="location" wire:model="tabulate"
                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                         <option value="1">All</option>
-                        {{-- <option value="2">Winner</option> --}}
+                        <option value="2">Winner</option>
 
 
-                    </select>
+                    </select> --}}
+                    <a href="{{ route('admin-printwinner') }}" target="_blank"
+                        class="py-1 px-2 bg-green-700 space-x-1  text-white flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Print Winner</span>
+                    </a>
                 </div>
                 <a href="{{ route('admin-print', ['type' => 'tabulation']) }}" target="_blank"
                     class="py-1 px-2 bg-green-700 space-x-1  text-white flex">
@@ -228,64 +362,21 @@
         </div>
         @if ($tabulate == 1)
             @livewire('tabulation')
+
+
         @else
             <div class="mt-3  w-96">
 
-                {{-- @foreach ($positions as $key => $item)
-                    <h1 class="underline pr-5 font-bold text-main uppercase ">
-                        {{ App\Models\Position::find($key)->position_name }}</h1>
-                    @foreach ($item->max()->limit(App\Models\Position::find($key)->vote_limit)->get()
-    as $candidate)
+                {{-- @foreach ($winners as $key => $winner)
+                    <span>{{ $winner['position'] }}</span>
+                    @php
+                        $student = App\Models\Student::findOrFail($winner['id']);
+                    @endphp
+                    <span>{{ $student->firstname }}</span>
+                    <span>{{ $winner['votes'] }}</span>
 
-                        <h1>{{ $candidate->student->lastname }}</h1>
-
-                    @endforeach
+                    <br>
                 @endforeach --}}
-
-                @forelse ($positions as $key => $item)
-                    <h1 class="underline pr-5 font-bold text-main uppercase ">
-                        {{ App\Models\Position::find($key)->position_name }}</h1>
-
-                        
-                        @foreach (App\Models\Vote::whereHas('candidate', function($k){
-                        $k->where('position_id', App\Models\Position::find($key)->id);
-                        })->get() as $candidate)
-                            
-                        <h1>{{$candidate}}</h1>
-
-                        @endforeach
-
-                    {{-- <h1> @dump(App\Models\Vote::whereHas('candidate', function($k){
-                        $k->where('position_id', $item->id);
-                        })->get())</h1> --}}
-                @empty
-
-                @endforelse
-
-                {{-- @forelse ($positions as $key => $item)
-                    <div
-                        class="relative rounded-lg border border-gray-300 bg-white  shadow-sm  items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                        <div class="header p-1 px-2 bg-main rounded-t-lg w-full text-white">
-                            {{ App\Models\Position::find($key)->position_name }}</div>
-                        <div class="p-2">
-                            <ul role="list" class="  divide-y divide-gray-200">
-
-                                @php
-                                    $limit = App\Models\Position::find($key)->vote_limit;
-                                    
-                                @endphp
-
-
-                                @dump($item)
-
-
-                            </ul>
-                        </div>
-                    </div>
-                @empty
-
-                @endforelse --}}
-
 
 
             </div>

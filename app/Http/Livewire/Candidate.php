@@ -8,9 +8,11 @@ use App\Models\Student;
 use App\Models\Position;
 use App\Models\Partylist;
 use App\Models\Image;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Candidate extends Component
 {
+    use LivewireAlert;
     public $addmodal = false;
     public $name;
     public $studentid;
@@ -23,6 +25,7 @@ class Candidate extends Component
     public $moral;
     public $search="";
     public $editmodal = false;
+    public $candidateid;
     public function render()
     {
         return view('livewire.candidate', [
@@ -111,5 +114,47 @@ class Candidate extends Component
         $this->citizenship = "";
         $this->image = null;
         $this->moral = null;
+    }
+
+    public function edit($id){
+      
+       $data = candidateModel::where('id', $id)->first();
+       $this->candidateid = $id;
+     $this->name = $data->student->firstname.' '.$data->student->lastname;
+     $this->stage = $data->stage_name;
+     $this->positionid = $data->position_id;
+     $this->partylistid = $data->partylist_id;
+     $this->average = $data->average;
+     $this->moral = $data->hasGoodMoral;
+     $this->citizenship = $data->citizenship;
+
+     $this->editmodal = true;
+    }
+
+    public function update(){
+        // dd('haha');
+        $data = candidateModel::where('id', $this->candidateid)->first();
+        // dd($data);
+        $this->validate([
+            'average' => 'required|integer|min:84',
+              ]);
+        
+       
+        $data->update([
+            'position_id' => $this->positionid,
+            'partylist_id' => $this->partylistid,
+            'stage_name' => $this->stage,
+            'average' => $this->average,
+            'hasGoodMoral' => $this->moral,
+            'citizenship' => $this->citizenship,
+        ]);
+        $this->editmodal = false;
+        $this->alert('success', 'Updated Successfully.');
+    }
+
+    public function delete($id){
+        $data = candidateModel::find($id);
+        $data->delete();
+        $this->alert('success', "Deleted Successfully");
     }
 }

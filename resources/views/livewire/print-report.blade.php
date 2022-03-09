@@ -257,7 +257,7 @@
             <h1 class="font-bold uppercase">Tabulation</h1>
             <div class="mt-4">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    @forelse ($positions as $key => $item)
+                    @forelse ($tabulations as $key => $item)
                         <div
                             class="relative rounded-lg border border-gray-300 bg-white  shadow-sm  items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                             <div class="header p-1 px-2 bg-main rounded-t-lg w-full text-white">

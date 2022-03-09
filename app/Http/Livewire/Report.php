@@ -8,10 +8,12 @@ use App\Models\Partylist;
 use App\Models\Candidate;
 use App\Models\Position;
 use App\Models\Vote;
+use Livewire\WithPagination;
 
 class Report extends Component
 {
     // public winners
+    use WithPagination;
     public $partylistid;
     public $student = 1;
     public $tabulate = 1;
@@ -21,12 +23,12 @@ class Report extends Component
 
         // $this->getWinners();
         return view('livewire.report', [
-            'students' => (($this->student == 1) ? Student::get() : Student::whereHas('user', function ($k) {
+            'students' => (($this->student == 1) ? Student::paginate(5) : Student::whereHas('user', function ($k) {
                 $k->where('isvoted', 0);
-            })->get()),
+            })->paginate(10)),
 
             'partylists' => Partylist::get(),
-            'candidates' => Candidate::where('partylist_id', 'like', '%' . $this->partylistid . '%')->get(),
+            'candidates' => Candidate::where('partylist_id', 'like', '%' . $this->partylistid . '%')->paginate(10),
             // 'positions' => Candidate::all()->groupBy('position_id'),
             'positions' => Position::get(),
 

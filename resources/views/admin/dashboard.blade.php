@@ -67,7 +67,13 @@
                     <div class="flex-1 truncate">
                         <div class="flex items-center space-x-3">
                             <h3 class="text-gray-900 text-xl font-bold truncate">
-                                {{ \App\Models\Vote::where('isfinal', 1)->count() }}</h3>
+                        @php
+                            $total_voted = \App\Models\User::has('votes')->count();
+                            // dd($total_voted);
+                            
+                        @endphp    
+                        {{$total_voted}}   
+                        </h3>
 
                         </div>
                         <p class="mt-1 text-gray-700 font-bold text-sm truncate">Voters Voted</p>

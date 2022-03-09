@@ -1,4 +1,4 @@
-<div x-data="{add: @entangle('addmodal'), edit: @entangle('editmodal')}">
+<div x-data="{add: @entangle('addmodal'), edit: @entangle('editmodal'), show: @entangle('info')}">
     <div class="hidden mt-8 sm:block">
         <div class="flex mb-3 px-6 justify-between items-center">
             <h1 class="  uppercase font-bold text-gray-600">List of Partylists</h1>
@@ -67,6 +67,9 @@
                                         aria-labelledby="pinned-project-options-menu-0-button" tabindex="-1">
 
                                         <div class="py-1" role="none">
+                                            <button wire:click="viewparty({{ $partylist->id }})"
+                                                class="text-gray-700 block px-4 py-2 text-sm" role="menuitem"
+                                                tabindex="-1" id="pinned-project-options-menu-0-item-1">Show</button>
                                             <button wire:click="edit({{ $partylist->id }})"
                                                 class="text-gray-700 block px-4 py-2 text-sm" role="menuitem"
                                                 tabindex="-1" id="pinned-project-options-menu-0-item-1">Edit</button>
@@ -292,6 +295,104 @@
                             </g>
                         </svg>
                         <button wire:click="updatepartylist" class="bg-main px-4 py-1 text-white">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div x-show="show" x-cloak class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!--
+                                                          Background overlay, show/hide based on modal state.
+
+                                                          Entering: "ease-out duration-300"
+                                                            From: "opacity-0"
+                                                            To: "opacity-100"
+                                                          Leaving: "ease-in duration-200"
+                                                            From: "opacity-100"
+                                                            To: "opacity-0"
+                                                        -->
+            <div x-show="show" x-cloak x-transition:enter=" ease-out duration-300" x-transition:enter-start="opacity-0 "
+                x-transition:enter-end="opacity-100 " x-transition:leave=" ease-in duration-200"
+                x-transition:leave-start="opacity-100 " x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-main bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <!-- This element is to trick the browser into centering the modal contents. -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!--
+                                                          Modal panel, show/hide based on modal state.
+
+                                                          Entering: "ease-out duration-300"
+                                                            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                            To: "opacity-100 translate-y-0 sm:scale-100"
+                                                          Leaving: "ease-in duration-200"
+                                                            From: "opacity-100 translate-y-0 sm:scale-100"
+                                                            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                        -->
+            <div x-show="show" x-cloak x-transition:enter=" ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave=" ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                class="inline-block align-bottom bg-white     text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full ">
+                <div class="bg-blue-600 h-1 w-full"></div>
+                <div class="flex px-2 border-b py-1 justify-between items-center">
+                    <h1 class="font-bold uppercase text-main">SHOW PARTYLIST INFO</h1>
+                    <button @click="add = false" class="hover:text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-3 px-10">
+                    <div>
+                        <label class="font-bold" for="">Parylist Name</label>
+                        <h1>{{ $name }}</h1>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="">Description</label>
+                        <h1>{{ $description }}</h1>
+                    </div>
+                    <div>
+                        <label class="font-bold" for="">Propaganda</label>
+                        <h1>{{ $propaganda }}</h1>
+                    </div>
+
+
+                    <div class="mt-6 flex justify-end ">
+                        <svg wire:loading wire:target="save" width="35" height="35" viewBox="0 0 45 45"
+                            xmlns="http://www.w3.org/2000/svg" stroke="#1A374D">
+                            <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                                <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                                    <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
+                                        calcMode="linear" repeatCount="indefinite" />
+                                    <animate attributeName="stroke-width" begin="1.5s" dur="3s" values="2;0"
+                                        calcMode="linear" repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                                    <animate attributeName="r" begin="3s" dur="3s" values="6;22" calcMode="linear"
+                                        repeatCount="indefinite" />
+                                    <animate attributeName="stroke-opacity" begin="3s" dur="3s" values="1;0"
+                                        calcMode="linear" repeatCount="indefinite" />
+                                    <animate attributeName="stroke-width" begin="3s" dur="3s" values="2;0"
+                                        calcMode="linear" repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="22" cy="22" r="8">
+                                    <animate attributeName="r" begin="0s" dur="1.5s" values="6;1;2;3;4;5;6"
+                                        calcMode="linear" repeatCount="indefinite" />
+                                </circle>
+                            </g>
+                        </svg>
+                        <button @click="show=false" class="bg-main px-4 py-1 text-white">close</button>
                     </div>
                 </div>
             </div>

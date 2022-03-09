@@ -40,6 +40,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 });
 
 
+
 //STUDENT
 Route::middleware('student')->prefix('student')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('student-dashboard');

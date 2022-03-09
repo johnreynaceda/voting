@@ -13,13 +13,28 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class Vote extends Component
 {
     use LivewireAlert;
+
+    public function mount()
+        {
+           if (auth()->user()->isvoted == 0) {
+          session()->flash('alert','Please cast your vote first.');
+           }else{
+
+           }
+        }
     public function render()
     {
+      
         return view('livewire.vote', [
             'positions' => Candidate::all()->groupBy('position_id'),
             'votes' => voteModel::where('user_id', auth()->user()->id)->get(),
             'event' => VoteEvent::get(),
         ]);
+    }
+
+
+    public function showAlert(){
+        $this->alert('error','Please cast your vote first.');
     }
 
     public function vote($id, $position)
@@ -63,12 +78,18 @@ class Vote extends Component
 
     public function submit($id)
     {
-        voteModel::where('user_id', $id)->update([
-            'isfinal' => true,
-        ]);
-        User::find($id)->update([
-            'isvoted' => true,
-        ]);
+        if (voteModel::where('user_id', $id)->count() < 1) {
+            $this->alert('info', 'Please cast your vote first. Thank You.');
+        }else{
+            voteModel::where('user_id', $id)->update([
+                'isfinal' => true,
+            ]);
+            User::find($id)->update([
+                'isvoted' => true,
+            ]);
+        }
+
+        
         // $this->alert('success', 'Submitted Successfully!', [
         //     'position' => 'center',
         //     'timer' => 3000,

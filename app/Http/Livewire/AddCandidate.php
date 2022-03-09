@@ -50,6 +50,7 @@ class AddCandidate extends Component
     public function save()
     {
 
+       
 
         $data = candidateModel::create([
             'student_id' => $this->studentid,
@@ -80,6 +81,9 @@ class AddCandidate extends Component
     public function savenew()
     {
 
+        $this->validate([
+           'average' => 'required|integer|min:84',
+             ]);
 
         $data = candidateModel::create([
             'student_id' => $this->studentid,

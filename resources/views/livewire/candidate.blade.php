@@ -35,16 +35,9 @@
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Firstname
+                            Fullname
                         </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Middlename
-                        </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Lastname
-                        </th>
+                        
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             stage name
@@ -79,13 +72,7 @@
                                     class="h-12 rounded-md w-12" alt="">
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-left font-medium text-gray-500">
-                                {{ $candidate->student->firstname }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-left font-medium text-gray-500">
-                                {{ $candidate->student->middlename }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-left text-gray-500">
-                                {{ $candidate->student->lastname }}
+                                {{ $candidate->student->firstname }} {{ $candidate->student->middlename[0] }}. {{ $candidate->student->lastname }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-left text-gray-500">
                                 {{ $candidate->stage_name }}
@@ -496,54 +483,80 @@
                 </div>
                 <div class="p-3 px-10">
                     <div class="mb-1">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Firstname</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Fullname</label>
                         <div class="mt-1">
-                            <input wire:model="firstname" type="email" name="email" id="email"
-                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                placeholder="">
+                           <div class="bg-gray-700 p-2 text-white rounded-md">{{$name}}</div>
                         </div>
                     </div>
                     <div class="mb-1">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Middlename</label>
+                        <label class="block text-sm font-medium text-gray-700">Stage Name</label>
                         <div class="mt-1">
-                            <input type="email" wire:model="middlename" name="email" id="email"
+                            <input wire:model="stage" type="text"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                 placeholder="">
                         </div>
-                    </div>
-                    <div class="mb-1">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Lastname</label>
-                        <div class="mt-1">
-                            <input type="email" wire:model="lastname" name="email" id="email"
-                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                placeholder="">
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        <label for="location" class="block text-sm font-medium text-gray-700">Gender</label>
-                        <select id="location" wire:model="gender" name="location"
-                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                            <option selected>---Select Gender---</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                    <div class="mb-1">
-                        <label for="location" class="block text-sm font-medium text-gray-700">Grade Level</label>
-                        <select id="location" wire:model="level" name="location"
-                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                            <option selected>---Select Grade Level---</option>
-                            <option value="Grade 7">Grade 7</option>
-                            <option value="Grade 8">Grade 8</option>
-                            <option value="Grade 9">Grade 9</option>
-                            <option value="Grade 10">Grade 10</option>
-                            <option value="Grade 11">Grade 11</option>
-                            <option value="Grade 12">Grade 12</option>
-                        </select>
                     </div>
 
+                    <div class="mt-1 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                        <div class="sm:col-span-3" wire:ignore>
+                            <label class="block text-sm font-medium text-gray-700">Position</label>
+                            <select wire:key="{{ \App\Models\Candidate::count() }}" wire:model.lazy="positionid"
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                <option selected>---Select Position---</option>
+                                @foreach ($positions as $item)
+                                    <option value="{{ $item->id }}">{{ $item->position_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="sm:col-span-3" wire:ignore>
+                            <label class="block text-sm font-medium text-gray-700">Partylist</label>
+                            <select wire:key="{{ \App\Models\Candidate::count() }}" wire:model.lazy="partylistid"
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                <option selected>---Select Partylist---</option>
+                                @foreach ($partylists as $item)
+                                    <option value="{{ $item->id }}">{{ $item->partylist_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-1 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <label for="email" class="block text-sm font-medium text-gray-700">Average</label>
+                            <div class="mt-1">
+                                <input wire:key="{{ \App\Models\Candidate::count() }}" wire:model="average"
+                                    type="text" name="email" id="email"
+                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                    placeholder="">
+                            </div>
+                             @error('average') <span class="error text-sm text-red-600">The average must be at least 85 and above.</span> @enderror
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <div class="relative flex mt-4 bg-gray-200 rounded-md px-2 items-start py-4">
+                                <div class="min-w-0 flex-1 text-sm">
+                                    <label for="person-1" class="font-bold text-gray-700 select-none">Has Good
+                                        Moral</label>
+                                </div>
+                                <div class="ml-3 flex items-center h-5">
+                                    <input wire:model="moral" id="person-1" name="person-1" type="checkbox"
+                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                </div>
+
+                            </div>
+                            <div class="mb-1">
+                                <label for="email" class="block text-sm font-medium text-gray-700">Citizenship</label>
+                                <div class="mt-1">
+                                    <input wire:model="citizenship" type="text" name="email" id="email"
+                                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        
+
                     <div class="mt-6 flex justify-end ">
-                        <svg wire:loading wire:target="save" width="35" height="35" viewBox="0 0 45 45"
+                        <svg wire:loading wire:target="update" width="35" height="35" viewBox="0 0 45 45"
                             xmlns="http://www.w3.org/2000/svg" stroke="#1A374D">
                             <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
                                 <circle cx="22" cy="22" r="6" stroke-opacity="0">

@@ -90,7 +90,11 @@
                     <!-- More people... -->
                 </tbody>
             </table>
+            
         </div>
+        <div class="mt-2">
+                {{$students->links()}}
+            </div>
     </div>
 
     <div class="py-3 flex space-x-5">

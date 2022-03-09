@@ -95,7 +95,7 @@
                     @empty
                         <tr>
                             <td colspan="7" class="px-6 py-4 whitespace-nowrap text-right flex text-sm font-medium"> No
-                                Student Available.</td>
+                                Users Available.</td>
                         </tr>
                     @endforelse
 

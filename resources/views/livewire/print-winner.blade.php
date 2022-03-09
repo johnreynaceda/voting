@@ -12,7 +12,7 @@
             @php
                 $student = App\Models\Student::findOrFail($winner['id']);
             @endphp
-            <span>{{ $student->firstname }}</span>
+            <span>{{ $student->firstname }} {{ $student->lastname }}</span>
 
 
             <br>

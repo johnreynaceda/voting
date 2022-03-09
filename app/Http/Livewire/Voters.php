@@ -160,7 +160,10 @@ class Voters extends Component
 
     public function delete($id)
     {
+        $student = Student::where('id', $id)->first();
+        
         Student::find($id)->delete();
+        User::find($student->user->id)->delete();
         $this->alert('success', 'Deleted Successfully!');
     }
 }

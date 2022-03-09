@@ -15,6 +15,7 @@ class Partylist extends Component
     public $partylistid;
     public $addmodal = false;
     public $editmodal = false;
+    public $info = false;
     public function render()
     {
         return view('livewire.partylist', [
@@ -75,5 +76,15 @@ class Partylist extends Component
     public function delete($id)
     {
         partylistModel::find($id)->delete();
+    }
+
+    public function viewparty($id)
+    {
+        $data = partylistModel::find($id);
+        $this->name = $data->partylist_name;
+        $this->description = $data->description;
+        $this->propaganda = $data->propaganda;
+        $this->partylistid = $data->id;
+        $this->info = true;
     }
 }

@@ -125,8 +125,9 @@
                             <input type="number" wire:model="average" name="first-name" id="first-name"
                                 autocomplete="given-name"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                        </div>
-                    </div>
+                            </div>
+                            @error('average') <span class="error text-sm text-red-600">The average must be at least 85 and above.</span> @enderror
+                            </div>
 
                     <div class="sm:col-span-3">
                         <div class="relative flex mt-4 bg-gray-200 rounded-md px-2 items-start py-4">

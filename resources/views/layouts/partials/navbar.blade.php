@@ -1,5 +1,5 @@
 <div
-    class="border-b sticky top-0 bg-white shadow-md px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+    class="border-b sticky top-0 z-50 bg-white shadow-md px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
     <div class="flex-1 min-w-0">
         <h1 class="text-lg font-bold leading-6 text-gray-500 sm:truncate">
             @if (Request::routeIs('admin-dashboard'))

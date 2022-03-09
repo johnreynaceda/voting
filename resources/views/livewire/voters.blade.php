@@ -225,6 +225,15 @@
                         <input type="file" wire:model="photo">
                         <span wire:loading wire:target="photo">Please wait...</span>
                     </div>
+                   <div class="mt-1">
+                    @if ($photo)
+
+                    Photo Preview:
+            
+                    <img src="{{ $photo->temporaryUrl() }}" class="w-20 h-20">
+            
+                @endif       
+                </div> 
 
                     <div class="mt-6 flex justify-end ">
                         <svg wire:loading wire:target="save" width="35" height="35" viewBox="0 0 45 45"

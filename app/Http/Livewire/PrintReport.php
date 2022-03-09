@@ -28,6 +28,7 @@ class PrintReport extends Component
             'candidates' => Candidate::where('partylist_id', 'like', '%' . $this->filter . '%')->get(),
             'positions' => Position::get(),
             'partylists' => Partylist::get(),
+            'tabulations' => Candidate::all()->groupBy('position_id'),
 
         ]);
     }

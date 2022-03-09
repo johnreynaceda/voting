@@ -12,6 +12,14 @@ class StudentController extends Controller
     }
     public function tabulation()
     {
-        return view('voter.tabulation');
+        if (auth()->user()->isvoted == 0) {
+          
+          return redirect()->route('student-dashboard');
+        
+         
+        }else{
+             return view('voter.tabulation');
+        }
+       
     }
 }

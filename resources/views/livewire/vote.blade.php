@@ -14,9 +14,14 @@
                     Tabulation</a>
             </div>
         @else
+        
             <main class=" flex-1 border-r border-main overflow-y-auto relative">
                 <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-                    <div class="h-auto">
+               @if (session()->has('alert'))
+               <div class="bg-blue-300 shadow-lg rounded-lg p-2 text-gray-700 text-lg font-bold m mb-2">{{session('alert')}}</div>
+               @endif
+
+                    <div class="h-auto mt-1">
                         @forelse ($positions as $key => $item)
                             <div
                                 class="md:flex md:items-center md:justify-between md:space-x-5 py-1 shadow  bg-main rounded-tr-full">

@@ -6,6 +6,10 @@
 
         </div>
     @else
+        @php
+            $end = $event->first()->finish_date;
+            
+        @endphp
         @if (auth()->user()->isvoted == 1)
             <div class="flex flex-col w-full justify-center items-center ">
                 <img src="{{ asset('images/voted.gif') }}" class="h-40" alt="">
@@ -13,13 +17,20 @@
                 <a href="{{ route('student-tabulation') }}" class="hover:underline hover:text-blue-500"> Open
                     Tabulation</a>
             </div>
+        @elseif(\Carbon\Carbon::parse($event->first()->finish_date)->format('Y-m-d H:i:s') < \Carbon\Carbon::now()->format('Y-m-d H:i:s'))
+            <div class="flex flex-col w-full justify-center items-center ">
+                <img src="{{ asset('images/voted.gif') }}" class="h-40" alt="">
+                <h1 class="text-2xl font-bold text-main">Voting is already Closed..</h1>
+                {{-- <a href="{{ route('student-tabulation') }}" class="hover:underline hover:text-blue-500"> Open
+                    Tabulation</a> --}}
+            </div>
         @else
-        
             <main class=" flex-1 border-r border-main overflow-y-auto relative">
                 <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-               @if (session()->has('alert'))
-               <div class="bg-blue-300 shadow-lg rounded-lg p-2 text-gray-700 text-lg font-bold m mb-2">{{session('alert')}}</div>
-               @endif
+                    @if (session()->has('alert'))
+                        <div class="bg-blue-300 shadow-lg rounded-lg p-2 text-gray-700 text-lg font-bold m mb-2">
+                            {{ session('alert') }}</div>
+                    @endif
 
                     <div class="h-auto mt-1">
                         @forelse ($positions as $key => $item)
@@ -115,14 +126,12 @@
                                         </li>
 
                                     @empty
-
                                     @endforelse
 
                                     <!-- More people... -->
                                 </ul>
                             </div>
                         @empty
-
                         @endforelse
 
                     </div>

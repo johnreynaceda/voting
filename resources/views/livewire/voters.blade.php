@@ -222,18 +222,22 @@
                     </div>
                     <div class="mb-1">
                         <label for="location" class="block text-sm font-medium text-gray-700">Photo</label>
-                        <input type="file" wire:model="photo">
+                        <label class="flex">
+                            <div
+                                class="flex w-auto bg-main px-2 py-1 text-white cursor-pointer rounded-md shadow hover:bg-blue-800">
+                                <span class=" text-base leading-normal">Select a Photo</span>
+                            </div>
+                            <input type='file' class="hidden" wire:model="photo" />
+                        </label>
                         <span wire:loading wire:target="photo">Please wait...</span>
                     </div>
-                   <div class="mt-1">
-                    @if ($photo)
+                    <div class="mt-1">
+                        @if ($photo)
+                            Photo Preview:
 
-                    Photo Preview:
-            
-                    <img src="{{ $photo->temporaryUrl() }}" class="w-20 h-20">
-            
-                @endif       
-                </div> 
+                            <img src="{{ $photo->temporaryUrl() }}" class="w-20 h-20">
+                        @endif
+                    </div>
 
                     <div class="mt-6 flex justify-end ">
                         <svg wire:loading wire:target="save" width="35" height="35" viewBox="0 0 45 45"

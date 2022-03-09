@@ -9,9 +9,11 @@ use App\Models\Position;
 use App\Models\Partylist;
 use App\Models\Image;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\WithPagination;
 
 class Candidate extends Component
 {
+    use WithPagination;
     use LivewireAlert;
     public $addmodal = false;
     public $name;
@@ -23,15 +25,15 @@ class Candidate extends Component
     public $positionid;
     public $partylistid;
     public $moral;
-    public $search="";
+    public $search = "";
     public $editmodal = false;
     public $candidateid;
     public function render()
     {
         return view('livewire.candidate', [
-            'candidates' => candidateModel::whereHas('student', function($k){
-                $k->where('firstname', 'like', '%'.$this->search.'%')->orWhere('lastname', 'like', '%'. $this->search. '%');
-            })->get(),
+            'candidates' => candidateModel::whereHas('student', function ($k) {
+                $k->where('firstname', 'like', '%' . $this->search . '%')->orWhere('lastname', 'like', '%' . $this->search . '%');
+            })->paginate(10),
             'students' => Student::where('firstname', 'like', '%' . $this->name . '%')->orWhere('lastname', 'like', '%' . $this->name . '%')->get(),
             'positions' => Position::get(),
             'partylists' => Partylist::get(),
@@ -116,30 +118,32 @@ class Candidate extends Component
         $this->moral = null;
     }
 
-    public function edit($id){
-      
-       $data = candidateModel::where('id', $id)->first();
-       $this->candidateid = $id;
-     $this->name = $data->student->firstname.' '.$data->student->lastname;
-     $this->stage = $data->stage_name;
-     $this->positionid = $data->position_id;
-     $this->partylistid = $data->partylist_id;
-     $this->average = $data->average;
-     $this->moral = $data->hasGoodMoral;
-     $this->citizenship = $data->citizenship;
+    public function edit($id)
+    {
 
-     $this->editmodal = true;
+        $data = candidateModel::where('id', $id)->first();
+        $this->candidateid = $id;
+        $this->name = $data->student->firstname . ' ' . $data->student->lastname;
+        $this->stage = $data->stage_name;
+        $this->positionid = $data->position_id;
+        $this->partylistid = $data->partylist_id;
+        $this->average = $data->average;
+        $this->moral = $data->hasGoodMoral;
+        $this->citizenship = $data->citizenship;
+
+        $this->editmodal = true;
     }
 
-    public function update(){
+    public function update()
+    {
         // dd('haha');
         $data = candidateModel::where('id', $this->candidateid)->first();
         // dd($data);
         $this->validate([
             'average' => 'required|integer|min:84',
-              ]);
-        
-       
+        ]);
+
+
         $data->update([
             'position_id' => $this->positionid,
             'partylist_id' => $this->partylistid,
@@ -152,7 +156,8 @@ class Candidate extends Component
         $this->alert('success', 'Updated Successfully.');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $data = candidateModel::find($id);
         $data->delete();
         $this->alert('success', "Deleted Successfully");

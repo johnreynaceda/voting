@@ -10,7 +10,8 @@
                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                             clip-rule="evenodd" />
                     </svg>
-                    <input type="text" wire:model="search" class="border-0 focus:outline-none focus:ring-0" placeholder="Search...">
+                    <input type="text" wire:model="search" class="border-0 focus:outline-none focus:ring-0"
+                        placeholder="Search...">
                 </div>
                 <a href="{{ route('candidate-add') }}"
                     class="bg-main hover:bg-blue-900 text-white flex rounded-r-md items-center p-1 px-2">
@@ -37,7 +38,7 @@
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Fullname
                         </th>
-                        
+
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             stage name
@@ -72,7 +73,8 @@
                                     class="h-12 rounded-md w-12" alt="">
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-left font-medium text-gray-500">
-                                {{ $candidate->student->firstname }} {{ $candidate->student->middlename[0] }}. {{ $candidate->student->lastname }}
+                                {{ $candidate->student->firstname }} {{ $candidate->student->middlename[0] }}.
+                                {{ $candidate->student->lastname }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-left text-gray-500">
                                 {{ $candidate->stage_name }}
@@ -125,6 +127,9 @@
                     <!-- More people... -->
                 </tbody>
             </table>
+        </div>
+        <div class="my-3 px-2">
+            {{ $candidates->links() }}
         </div>
     </div>
     @php
@@ -215,7 +220,6 @@
         To: "opacity-0"
     -->
                             @if ($name == null)
-
                             @else
                                 <ul class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
                                     tabindex="-1" role="listbox" aria-labelledby="listbox-label"
@@ -485,7 +489,7 @@
                     <div class="mb-1">
                         <label for="email" class="block text-sm font-medium text-gray-700">Fullname</label>
                         <div class="mt-1">
-                           <div class="bg-gray-700 p-2 text-white rounded-md">{{$name}}</div>
+                            <div class="bg-gray-700 p-2 text-white rounded-md">{{ $name }}</div>
                         </div>
                     </div>
                     <div class="mb-1">
@@ -529,7 +533,9 @@
                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                     placeholder="">
                             </div>
-                             @error('average') <span class="error text-sm text-red-600">The average must be at least 85 and above.</span> @enderror
+                            @error('average')
+                                <span class="error text-sm text-red-600">The average must be at least 85 and above.</span>
+                            @enderror
                         </div>
 
                         <div class="sm:col-span-3">
@@ -553,38 +559,38 @@
                                 </div>
                             </div>
                         </div>
-                        
 
-                    <div class="mt-6 flex justify-end ">
-                        <svg wire:loading wire:target="update" width="35" height="35" viewBox="0 0 45 45"
-                            xmlns="http://www.w3.org/2000/svg" stroke="#1A374D">
-                            <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
-                                <circle cx="22" cy="22" r="6" stroke-opacity="0">
-                                    <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
-                                        repeatCount="indefinite" />
-                                    <animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
-                                        calcMode="linear" repeatCount="indefinite" />
-                                    <animate attributeName="stroke-width" begin="1.5s" dur="3s" values="2;0"
-                                        calcMode="linear" repeatCount="indefinite" />
-                                </circle>
-                                <circle cx="22" cy="22" r="6" stroke-opacity="0">
-                                    <animate attributeName="r" begin="3s" dur="3s" values="6;22" calcMode="linear"
-                                        repeatCount="indefinite" />
-                                    <animate attributeName="stroke-opacity" begin="3s" dur="3s" values="1;0"
-                                        calcMode="linear" repeatCount="indefinite" />
-                                    <animate attributeName="stroke-width" begin="3s" dur="3s" values="2;0"
-                                        calcMode="linear" repeatCount="indefinite" />
-                                </circle>
-                                <circle cx="22" cy="22" r="8">
-                                    <animate attributeName="r" begin="0s" dur="1.5s" values="6;1;2;3;4;5;6"
-                                        calcMode="linear" repeatCount="indefinite" />
-                                </circle>
-                            </g>
-                        </svg>
-                        <button wire:click="update" class="bg-main px-4 py-1 text-white">Update</button>
+
+                        <div class="mt-6 flex justify-end ">
+                            <svg wire:loading wire:target="update" width="35" height="35" viewBox="0 0 45 45"
+                                xmlns="http://www.w3.org/2000/svg" stroke="#1A374D">
+                                <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                                    <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                                        <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
+                                            repeatCount="indefinite" />
+                                        <animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                        <animate attributeName="stroke-width" begin="1.5s" dur="3s" values="2;0"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                                        <animate attributeName="r" begin="3s" dur="3s" values="6;22" calcMode="linear"
+                                            repeatCount="indefinite" />
+                                        <animate attributeName="stroke-opacity" begin="3s" dur="3s" values="1;0"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                        <animate attributeName="stroke-width" begin="3s" dur="3s" values="2;0"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="22" cy="22" r="8">
+                                        <animate attributeName="r" begin="0s" dur="1.5s" values="6;1;2;3;4;5;6"
+                                            calcMode="linear" repeatCount="indefinite" />
+                                    </circle>
+                                </g>
+                            </svg>
+                            <button wire:click="update" class="bg-main px-4 py-1 text-white">Update</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

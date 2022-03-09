@@ -8,9 +8,16 @@
                     <input type="text" wire:model="name" name="email" id="email"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block  sm:text-sm border-gray-300 rounded-md">
                 </div>
+                <label for="email" class="block text-sm font-medium mt-1 text-gray-700">Schedule</label>
+                <div class="mt-1 flex space-x-2">
+                    <input type="datetime-local" wire:model="start_date" name="email" id="email"
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block  sm:text-sm border-gray-300 rounded-md">
+                    <span>-</span>
+                    <input type="datetime-local" wire:model="finish_date" name="email" id="email"
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block  sm:text-sm border-gray-300 rounded-md">
+                </div>
             </div>
             <button wire:click="start" class="py-1 px-2 bg-main text-white rounded-md">Start Voting</button>
-
         @else
             <div class="flex space-x-3">
                 <h1 class="text-xl font-bold text-main">Voting is now Available</h1>
@@ -107,7 +114,6 @@
                         </li>
 
                     @empty
-
                     @endforelse
 
                     <!-- More people... -->

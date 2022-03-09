@@ -17,6 +17,8 @@ class CreateVoteEventsTable extends Migration
             $table->id();
             $table->string('event_name');
             $table->boolean('isStart')->default(false);
+            $table->string('start_date');
+            $table->string('finish_date');
             $table->timestamps();
         });
     }

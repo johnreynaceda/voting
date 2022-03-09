@@ -15,16 +15,15 @@ class Vote extends Component
     use LivewireAlert;
 
     public function mount()
-        {
-           if (auth()->user()->isvoted == 0) {
-          session()->flash('alert','Please cast your vote first.');
-           }else{
-
-           }
+    {
+        if (auth()->user()->isvoted == 0) {
+            session()->flash('alert', 'Please cast your vote first.');
+        } else {
         }
+    }
     public function render()
     {
-      
+
         return view('livewire.vote', [
             'positions' => Candidate::all()->groupBy('position_id'),
             'votes' => voteModel::where('user_id', auth()->user()->id)->get(),
@@ -33,8 +32,9 @@ class Vote extends Component
     }
 
 
-    public function showAlert(){
-        $this->alert('error','Please cast your vote first.');
+    public function showAlert()
+    {
+        $this->alert('error', 'Please cast your vote first.');
     }
 
     public function vote($id, $position)
@@ -80,7 +80,7 @@ class Vote extends Component
     {
         if (voteModel::where('user_id', $id)->count() < 1) {
             $this->alert('info', 'Please cast your vote first. Thank You.');
-        }else{
+        } else {
             voteModel::where('user_id', $id)->update([
                 'isfinal' => true,
             ]);
@@ -89,7 +89,7 @@ class Vote extends Component
             ]);
         }
 
-        
+
         // $this->alert('success', 'Submitted Successfully!', [
         //     'position' => 'center',
         //     'timer' => 3000,

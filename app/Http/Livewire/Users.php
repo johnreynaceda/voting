@@ -20,7 +20,7 @@ class Users extends Component
     public function render()
     {
         return view('livewire.users', [
-            'users' => User::where('user_type_id', 1)->where('id','!=', auth()->user()->id)->get(),
+            'users' => User::where('user_type_id', 1)->where('id','!=', auth()->user()->id)->where('role', '!=', 'SSG Adviser')->get(),
         ]);
     }
 

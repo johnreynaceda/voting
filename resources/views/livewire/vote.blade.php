@@ -1,4 +1,4 @@
-<div class="relative flex w-full ">
+<div class="relative flex w-full" wire:poll.750ms>
     @if ($event->isEmpty())
         <div class="flex flex-col w-full justify-center items-center ">
             <img src="{{ asset('images/voted.gif') }}" class="h-40" alt="">
